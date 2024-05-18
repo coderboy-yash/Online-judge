@@ -3,7 +3,8 @@ import dotenv from "dotenv";
 import mongoose from "mongoose";
 import cors from "cors";
 // import cookieParser from "cookie-parser";
-// import userRouter from "./routes/userRouter.js";
+import userRouter from "./routes/userRouter.js";
+import problemRouter from "./routes/problemRouter.js";
 
 const app = express();
 
@@ -31,6 +32,8 @@ app.use(express.json());
 app.get("/", (req, res) => {
   res.send("hello from api");
 });
+app.post("/login",userRouter)
+app.post("/addproblem",problemRouter)
 app.listen(port, () => {
   connect();
   console.log("listening on port", port);
