@@ -15,7 +15,7 @@ const connect = async () => {
     await mongoose.connect(process.env.MONGO_URL);
     console.log("database connection established");
   } catch (err) {
-    console.log("error connecting to database: " + err);
+    console.log("error connecting to database: ", err);
   }
 };
 // middleware
@@ -32,8 +32,9 @@ app.use(express.json());
 app.get("/", (req, res) => {
   res.send("hello from api");
 });
-app.post("/login",userRouter)
-app.post("/addproblem",problemRouter)
+app.use("/login",userRouter)
+app.use("/problem",problemRouter)
+// app.get()
 app.listen(port, () => {
   connect();
   console.log("listening on port", port);
