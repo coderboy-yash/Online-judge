@@ -5,6 +5,7 @@ import cors from "cors";
 // import cookieParser from "cookie-parser";
 import userRouter from "./routes/userRouter.js";
 import problemRouter from "./routes/problemRouter.js";
+import codeRouter from "./routes/codeRouter.js";
 
 const app = express();
 
@@ -34,6 +35,7 @@ app.get("/", (req, res) => {
 });
 app.use("/login",userRouter)
 app.use("/problem",problemRouter)
+app.use("/code",codeRouter)
 // app.get()
 app.listen(port, () => {
   connect();

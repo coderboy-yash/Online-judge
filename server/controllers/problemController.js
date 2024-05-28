@@ -20,7 +20,7 @@ export const getAllProblems=async (req,res)=>{
   console.log(2)
      const problems=await   Problem.find({});
      console.log(problems);
-     res.send("problems");
+     res.send(problems);
 }
 export const getProblemById = async (req, res) => {
   const { id } = req.params;
