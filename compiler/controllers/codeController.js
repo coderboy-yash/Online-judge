@@ -1,3 +1,4 @@
+import { executeCpp } from "../executeCpp.js";
 import { executePython } from "../executePython.js";
 import { generateFile } from "../generateFile.js";
 
@@ -9,9 +10,17 @@ export const runCode =async (req,res)=>{
       }
       try{
         const filePath=await generateFile(language,code);
-        // console.log(filePath)
-        const output=await executePython(filePath);
-        res.json({filePath,output});
+    
+        if(language==py){
+          const output=await executePython(filePath);
+          res.json({filePath,output});
+        }
+        if(language==cpp){
+          const inputPath = await generateInputFile(input);
+        const output = await executeCpp(filePath, inputPath);
+        res.json({ filePath, inputPath, output });
+        }
+     
         
       }
       catch(error){

@@ -16,7 +16,7 @@ if(!fs.existsSync(outputPath)){
 }
 export const executePython = async (filepath) => {
     // Adjust the command to handle different drive letters
-    const command = `C: && cd \\ && py "${filepath}"`;
+    const command = `python "${filepath}"`;
 
     try {
         const { stdout, stderr } = await execPromise(command);

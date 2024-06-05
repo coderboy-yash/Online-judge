@@ -29,7 +29,7 @@ const Editor = ({ defaultValue }) => {
     const handleSubmit = async () => {
         const code = editorRef.current.getValue();
         const payload = {
-            language: 'py',
+            language: '',
             code: code
         };
 
