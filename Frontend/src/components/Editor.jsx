@@ -34,7 +34,7 @@ const Editor = ({ defaultValue }) => {
         };
 
         try {
-            const { data } = await axios.post('http://localhost:3000/code/run', payload);
+            const { data } = await axios.post('http://localhost:3001/code/run', payload);
             console.log(data);
             setOutput(data.output);
         } catch (error) {

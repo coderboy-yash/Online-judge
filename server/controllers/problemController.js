@@ -17,9 +17,9 @@ export const addProblem=async (req,res)=>{
 
 
 export const getAllProblems=async (req,res)=>{
-  console.log(2)
+  // console.log(2)
      const problems=await   Problem.find({});
-     console.log(problems);
+    //  console.log(problems);
      res.send(problems);
 }
 export const getProblemById = async (req, res) => {

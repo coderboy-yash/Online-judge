@@ -2,15 +2,16 @@ import express from "express";
 import dotenv from "dotenv";
 import mongoose from "mongoose";
 import cors from "cors";
-// import cookieParser from "cookie-parser";
+import cookieParser from "cookie-parser";
 import userRouter from "./routes/userRouter.js";
 import problemRouter from "./routes/problemRouter.js";
 import codeRouter from "./routes/codeRouter.js";
 
 const app = express();
+app.use(cookieParser());
 
 dotenv.config();
-const port = 3000;
+const port = process.env.PORT;
 const connect = async () => {
   try {
     await mongoose.connect(process.env.MONGO_URL);
@@ -22,18 +23,18 @@ const connect = async () => {
 // middleware
 
 let corsOptions = {
+  origin: process.env.CORS_ORIGIN, // Specify the frontend origin
   credentials: true,
 };
 
-app.options("*", cors(corsOptions));
-app.use(cors(corsOptions));
+app.use(cors(corsOptions)); 
 // app.use(cookieParser());
 app.use(express.json());
 // app.use("/user", userRouter);
 app.get("/", (req, res) => {
   res.send("hello from api");
 });
-app.use("/login",userRouter)
+app.use("/user",userRouter)
 app.use("/problem",problemRouter)
 app.use("/code",codeRouter)
 // app.get()

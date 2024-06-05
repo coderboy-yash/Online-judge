@@ -1,15 +1,25 @@
-import React, { useContext, useEffect } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import logo from '../assets/logo.png'
 import { NavLink } from 'react-router-dom'
 import { UserContext } from '../userContext';
+import Cookies from 'js-cookie'
 const Navbar = () => {
-    const { username } = localStorage.getItem('user');
-    useEffect(() => {
-      console.log(username?.uid)
-    }, [username])
-    
-    // console.log(username.uid)
+   
+    const [user, setUser] = useState(null);
 
+    useEffect(() => {
+        const userCookie = Cookies.get('user');
+        if (userCookie) {
+            setUser(JSON.parse(userCookie));
+        }
+    }, []);
+
+    const deleteCookie = () => {
+        Cookies.remove('user');
+        setUser(null);
+        alert(' user logged out successfully');
+        window.location.reload(); 
+    };
 
     return (
         <div className="p-4  flex justify-between items-center border-b-2 border-amber-700">
@@ -18,10 +28,12 @@ const Navbar = () => {
             <img src={logo} className='w-10' alt="" />
             <div className='text-2xl font-bold text-amber-700'>Codify</div>
             </NavLink>
-            <div>
+            <div className='flex gap-4'>
                 <button className='border-amber-700 border rounded-md text-amber-700 p-2'>Practice</button>
-                <div>yash{username?.displayName}</div>
-                {/* <img src={user.photoURL} className='w-10' alt="" /> */}
+                {user&& <button onClick={()=>deleteCookie()} className='border-amber-700 border rounded-md text-amber-700 p-2'>Logout</button>}
+
+                {/* <div>{user&&user.name}</div> */}
+                {/* <img src={user.image} className='w-full bg-black' alt="" /> */}
             </div>
         </div>
     )
