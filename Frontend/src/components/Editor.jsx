@@ -10,6 +10,7 @@ import axios from 'axios';
 import Loader from './Loader';
 
 const Editor = ({ defaultValue, id, language }) => {
+    const host=import.meta.env.VITE_compilerhost;
     const editorRef = useRef(null);
     const textAreaRef = useRef(null);
     const [output, setOutput] = useState("Run your code to see the output");
@@ -42,7 +43,8 @@ const Editor = ({ defaultValue, id, language }) => {
 
         try {
             console.log("Submitting code");
-            const response = await axios.post('http://localhost:3001/code/run', payload);
+            console.log(host)
+            const response = await axios.post(`${host}/code/run`, payload);
             console.log("Received response", response);
             setOutput(response.data.output);
         } catch (error) {
@@ -62,7 +64,7 @@ const Editor = ({ defaultValue, id, language }) => {
 
         try {
             console.log("Submitting code");
-            const res = await axios.post('http://localhost:3001/code/submit', payload);
+            const res = await axios.post(`${host}/code/submit`, payload);
             console.log("Received response", res);
             setResult(res.data);
 

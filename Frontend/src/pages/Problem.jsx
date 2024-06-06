@@ -31,6 +31,7 @@ const styles = {
 };
 
 const Problem = () => {
+  const host=import.meta.env.VITE_host
   const navigate = useNavigate();
  
   const location = useLocation();
@@ -46,7 +47,7 @@ const Problem = () => {
         if(!id){
           navigate("/")
         }
-        const res = await axios.get(`http://localhost:3000/problem/${id}`);
+        const res = await axios.get(`${host}/problem/${id}`);
         // console.log(res.axioserror.response.status);
         // if(res.axioserror.response.status){
         //   navigate("/")

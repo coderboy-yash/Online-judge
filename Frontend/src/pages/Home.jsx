@@ -10,6 +10,7 @@ import { NavLink } from "react-router-dom";
 import Cookies from 'js-cookie'
 
 const Home = () => {
+  const host=import.meta.env.VITE_host;
   const [user, setUser] = useState(null);
 
   useEffect(() => {
@@ -29,8 +30,8 @@ const Home = () => {
           console.log('User from cookies:', parsedUser.name);
         }
 
-
-        const res = await axios.get('http://localhost:3000/problem/getallproblems');
+       console.log(host)
+        const res = await axios.get(`${host}/problem/getallproblems`);
         console.log(res.data);
         setProblems(res.data);
 
@@ -91,7 +92,7 @@ const Home = () => {
           </thead>
           <tbody className='text-lg'>
             {
-              problems != "" && problems.sort((a, b) => parseInt(a.id) - parseInt(b.id)) .map((problem, i) => (
+              problems != "" && problems?.sort((a, b) => parseInt(a.id) - parseInt(b.id)) .map((problem, i) => (
 
                 <tr key={i} class="bg-neutral-200 border-b border-white">
                   <th scope="row" class="px-6 py-4 font-medium">
