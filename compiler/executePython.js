@@ -14,9 +14,9 @@ const execPromise = util.promisify(exec);
 if(!fs.existsSync(outputPath)){
     fs.mkdirSync(outputPath,{recursive:true})
 }
-export const executePython = async (filepath) => {
+export const executePython = async (filepath,inputFilePath) => {
     // Adjust the command to handle different drive letters
-    const command = `python "${filepath}"`;
+    const command = `python "${filepath}" < "${inputFilePath}"`;
 
     try {
         const { stdout, stderr } = await execPromise(command);
@@ -24,7 +24,7 @@ export const executePython = async (filepath) => {
         if (stderr) {
             throw new Error(stderr);
         }
-        console.log(stdout)
+        // console.log(stdout)
         return stdout;
     } catch (error) {
         throw { error: error.message || error, stderr: error.stderr || '' };

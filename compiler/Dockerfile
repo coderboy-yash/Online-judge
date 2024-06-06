@@ -1,8 +1,11 @@
 # Use official Node.js 20.12.2 image
-FROM node:20.12.2
+FROM node:18-alpine
 
 # Install Python
-RUN apt-get update && apt-get install -y python3 python3-pip && ln -s /usr/bin/python3 /usr/bin/python
+
+
+RUN apk update && apk add --no-cache python3 py3-pip
+
 
 # Install GCC and other necessary build tools
 RUN apk update && apk add --no-cache g++

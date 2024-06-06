@@ -20,7 +20,7 @@ app.use(cors(corsOptions));
 app.use(express.json());
 
 app.get("/", (req, res) => {
-    res.send("hello from api");
+    res.send("hello from compiler api");
 });
 app.use("/code",codeRouter);
 const connect = async () => {
