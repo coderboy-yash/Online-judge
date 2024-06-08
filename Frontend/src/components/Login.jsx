@@ -9,7 +9,7 @@ import axios from 'axios'
 
 const Login = () => {
     const [user, setUser] = useState(null);
-   
+    const host=import.meta.env.VITE_host;
 
   useEffect(() => {
     const storedUser = JSON.parse(localStorage.getItem('user'));
@@ -32,7 +32,8 @@ const Login = () => {
            
             Cookies.set('user', JSON.stringify(savedData));
          
-            const response = await fetch('http://localhost:3000/user/login', {
+            window.location.reload(); 
+            const response = await fetch(`${host}/user/login`, {
               method: 'POST',
               headers: {
                 'Content-Type': 'application/json',
@@ -43,7 +44,6 @@ const Login = () => {
         
             const data = await response.json();
             console.log(data);
-            window.location.reload(); 
 
 
         }
