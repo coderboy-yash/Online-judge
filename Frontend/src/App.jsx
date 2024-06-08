@@ -23,6 +23,7 @@ export default function App() {
       </Routes>
 
     </BrowserRouter>
+    <div className="bg-amber-800 p-2 text-white mt-10 text-xs  w-full justify-center flex">Made with love from yash ❤</div>
     </UserProvider>
  
   )

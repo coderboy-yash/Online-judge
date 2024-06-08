@@ -28,9 +28,10 @@ const Navbar = () => {
             <img src={logo} className='w-10' alt="" />
             <div className='text-2xl font-bold text-amber-700'>Codify</div>
             </NavLink>
-            <div className='flex gap-4'>
-                <button className='border-amber-700 border rounded-md text-amber-700 p-2'>Practice</button>
-                {user&& <button onClick={()=>deleteCookie()} className='border-amber-700 border rounded-md text-amber-700 p-2'>Logout</button>}
+            <div className='flex gap-8 mr-6'>
+               <a href="#problems" className='border-amber-700 border rounded-md bg-amber-700 text-white p-2 px-6'>Practice</a> 
+               {/* <button className='border-amber-700 border rounded-md bg-amber-700 text-white p-2 px-6'>Practice</button> */}
+                {user&& <button onClick={()=>deleteCookie()} className='border-amber-700 border px-6 rounded-md bg-amber-700 text-white p-2'>Logout</button>}
 
                 {/* <div>{user&&user.name}</div> */}
                 {/* <img src={user.image} className='w-full bg-black' alt="" /> */}
